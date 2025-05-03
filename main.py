@@ -63,7 +63,10 @@ if resume_file:
             scores = get_resume_scorecard(resume_text, jd_input, api_key)
             for k in ["Structure", "Clarity", "Relevance", "Formatting"]:
                 st.text(f"{k}: {scores[k]}/10")
-                st.progress(scores[k] / 10)
+                if scores[k] is not None:
+                   st.progress(scores[k] / 10)
+                else:
+                   st.progress(0)  
             st.text(f"Total Score: {scores['Total']}/100")
             st.progress(scores["Total"] / 100)
 
